@@ -212,6 +212,12 @@ const bagl_element_t *view_prepro(const bagl_element_t *element) {
             }
             UX_CALLBACK_SET_INTERVAL(2000);
             break;
+        case UIID_ICONREVIEW:
+            if (!h_paging_intro_screen()){
+                return NULL;
+            }
+            UX_CALLBACK_SET_INTERVAL(2000);
+            break;
         case UIID_LABELSCROLL:
             UX_CALLBACK_SET_INTERVAL(
                 MAX(3000, 1000 + bagl_label_roundtrip_duration_ms(element, 7))
