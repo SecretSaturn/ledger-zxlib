@@ -36,6 +36,7 @@
 #include <stdbool.h>
 
 view_t viewdata;
+unsigned int mustReply = 0;
 
 void h_approve(__Z_UNUSED unsigned int _) {
     zemu_log_stack("h_approve");
@@ -178,8 +179,9 @@ void h_review_action(unsigned int requireReply) {
         return;
     }
 
+    // Need to use this shortcut for BlindSigning
     zemu_log_stack("quick accept");
-    if (app_mode_expert()) {
+    if (app_mode_expert() || app_mode_blind()) {
         set_accept_item();
         h_review_update();
         return;
