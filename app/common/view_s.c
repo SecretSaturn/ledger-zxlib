@@ -65,7 +65,7 @@ enum MAINMENU_SCREENS {
 #ifdef APP_BLIND_MODE_ENABLED
     SCREEN_BLIND,
 #endif
-}
+};
 
 ux_state_t ux;
 extern ux_menu_state_t ux_menu;
