@@ -36,7 +36,7 @@
 #include <stdbool.h>
 
 view_t viewdata;
-unsigned int mustReply = 0;
+unsigned int review_type = 0;
 
 void h_approve(__Z_UNUSED unsigned int _) {
     zemu_log_stack("h_approve");
@@ -70,25 +70,17 @@ void h_initialize(__Z_UNUSED unsigned int _) {
 }
 
 uint8_t getIntroPages() {
-#if defined(APP_BLIND_MODE_ENABLED)
-    if (mustReply == REVIEW_ADDRESS || !app_mode_blind()) {
-        #if defined(TARGET_NANOS)
-            return INTRO_PAGES - 1;
-        #else
-            return INTRO_PAGES;
-        #endif
-    } else {
-        return INTRO_PAGES;
+#if defined(APP_BLIND_MODE_ENABLED) && defined(TARGET_NANOS)
+    if (review_type == REVIEW_ADDRESS || !app_mode_blind()) {
+        return INTRO_PAGES - 1;
     }
-#else
-    return INTRO_PAGES;
 #endif
+    return INTRO_PAGES;
 }
 
 bool h_paging_intro_screen() {
     return viewdata.itemIdx < getIntroPages();
 }
-
 ///////////////////////////////////
 // Paging related
 
@@ -258,40 +250,41 @@ zxerr_t h_review_update_data() {
         char* intro_key = NULL;
         char* intro_value = NULL;
 
-    #if defined(REVIEW_SCREEN_ENABLED) && defined(APP_BLIND_MODE_ENABLED)
+#if defined(REVIEW_SCREEN_ENABLED)
         switch (viewdata.itemIdx) {
             case 0:
                 intro_key = PIC(review_key);
-                if(mustReply == REVIEW_ADDRESS) {
-                    intro_value = PIC(review_addrvalue);
-                } else if (mustReply == REVIEW_UI) {
+                switch (review_type)
+                {
+                case REVIEW_UI:
                     intro_value = PIC(review_configvalue);
-                } else {
+                    break;
+
+                case REVIEW_ADDRESS:
+                    intro_value = PIC(review_addrvalue);
+                    break;
+
+                case REVIEW_TXN:
+                default:
                     intro_value = PIC(review_txvalue);
+                    break;
                 }
                 break;
+        #if defined(APP_BLIND_MODE_ENABLED)
             case 1:
                 intro_key = PIC(blindsigning_key);
                 intro_value = PIC(blindsigning_value);
                 break;
+        #endif
             default:
                 return zxerr_no_data;
         }
-    #elif defined(REVIEW_SCREEN_ENABLED)
-        intro_key = PIC(review_key);
-        if(mustReply == REVIEW_ADDRESS) {
-            intro_value = PIC(review_addrvalue);
-        } else if (mustReply == REVIEW_UI) {
-            intro_value = PIC(review_configvalue);
-        } else {
-            intro_value = PIC(review_txvalue);
-        }
-    #elif defined(APP_BLIND_MODE_ENABLED)
+#elif defined(APP_BLIND_MODE_ENABLED)
         intro_key = PIC(blindsigning_key);
         intro_value = PIC(blindsigning_value);
-    #else
+#else
         return zxerr_no_data;
-    #endif
+#endif
 
         snprintf(viewdata.key, MAX_CHARS_PER_KEY_LINE, "%s", intro_key);
         snprintf(viewdata.value, MAX_CHARS_PER_VALUE1_LINE, "%s", intro_value);

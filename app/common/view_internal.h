@@ -74,11 +74,11 @@ static const char* blindsigning_value = BLIND_SIGNING_VALUE;
     #define INTRO_PAGES 0
 #endif
 
-typedef enum ReviewType {
+typedef enum {
   REVIEW_UI = 0,
   REVIEW_ADDRESS,
   REVIEW_TXN,
-} ReviewType;
+} review_type_e;
 
 
 #if defined(TARGET_NANOS)

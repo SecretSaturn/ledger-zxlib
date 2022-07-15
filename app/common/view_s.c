@@ -69,7 +69,7 @@ enum MAINMENU_SCREENS {
 
 ux_state_t ux;
 extern ux_menu_state_t ux_menu;
-extern unsigned int mustReply;
+extern unsigned int review_type;
 
 void os_exit(uint32_t id) {
     (void)id;
@@ -263,7 +263,7 @@ void h_review_button_right() {
 
 void h_review_button_both() {
     zemu_log_stack("h_review_button_both");
-    h_review_action(mustReply);
+    h_review_action(review_type);
 }
 
 //////////////////////////
@@ -378,7 +378,7 @@ void h_secret_click() {
 
 void view_review_show_impl(unsigned int requireReply) {
     zemu_log_stack("view_review_show_impl");
-    mustReply = requireReply;
+    review_type = requireReply;
 
     h_paging_init();
 
