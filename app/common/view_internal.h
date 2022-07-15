@@ -57,6 +57,7 @@
 static const char* review_key = REVIEW_SCREEN_TITLE;
 static const char* review_txvalue = REVIEW_SCREEN_TXN_VALUE;
 static const char* review_addrvalue = REVIEW_SCREEN_ADDR_VALUE;
+static const char* review_keyconfig = "Review";
 static const char* review_configvalue = "configuration";
 
 static const char* blindsigning_key = BLIND_SIGNING_TITLE;

@@ -336,16 +336,12 @@ void h_account_update() {
 
 #ifdef APP_BLIND_MODE_ENABLED
 void h_blind_toggle() {
-    if(app_mode_expert() || app_mode_blind()) {
-        if(app_mode_blind()) {
-            app_mode_set_blind(0);
-            view_idle_show(3, NULL);
-        } else {
-            blind_enabled();
-        }
-    } else {
-        view_idle_show(3, NULL);
+    if (app_mode_expert() && !app_mode_blind()) {
+        blind_enabled();
+        return;
     }
+    app_mode_set_blind(0);
+    view_idle_show(SCREEN_BLIND, NULL);
 }
 
 void h_blind_update() {

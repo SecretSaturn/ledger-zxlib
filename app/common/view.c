@@ -257,6 +257,7 @@ zxerr_t h_review_update_data() {
                 switch (review_type)
                 {
                 case REVIEW_UI:
+                    intro_key = PIC(review_keyconfig);
                     intro_value = PIC(review_configvalue);
                     break;
 
