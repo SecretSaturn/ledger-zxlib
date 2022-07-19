@@ -77,6 +77,7 @@ const ux_menu_entry_t menu_main[] = {
 #endif
      0, &C_icon_app, "Developed by:", "Zondax.ch", 33, 12},
 
+    {NULL, NULL, 0, &C_icon_app, "Forked by:", "Secret Saturn", 33, 12},
     {NULL, NULL, 0, &C_icon_app, "License: ", "Apache 2.0", 33, 12},
     {NULL, os_exit, 0, &C_icon_dashboard, "Quit", NULL, 50, 29},
     UX_MENU_END
@@ -88,6 +89,7 @@ const ux_menu_entry_t menu_initialize[] = {
     {NULL, h_expert_toggle, 0, &C_icon_app, "Expert mode:", viewdata.value, 33, 12},
     {NULL, NULL, 0, &C_icon_app, APPVERSION_LINE1, APPVERSION_LINE2, 33, 12},
     {NULL, NULL, 0, &C_icon_app, "Developed by:", "Zondax.ch", 33, 12},
+    {NULL, NULL, 0, &C_icon_app, "Forked by:", "Secret Saturn", 33, 12},
     {NULL, NULL, 0, &C_icon_app, "License: ", "Apache 2.0", 33, 12},
     {NULL, os_exit, 0, &C_icon_dashboard, "Quit", NULL, 50, 29},
     UX_MENU_END

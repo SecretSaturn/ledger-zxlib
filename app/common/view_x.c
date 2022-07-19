@@ -70,6 +70,8 @@ UX_STEP_CB(ux_idle_flow_4_step, bn, h_secret_click(), { "Developed by:", "Zondax
 UX_STEP_NOCB(ux_idle_flow_4_step, bn, { "Developed by:", "Zondax.ch", });
 #endif
 
+UX_STEP_NOCB(ux_idle_flow_8_step, bn, { "Forked by:", "Secret Saturn", });
+
 UX_STEP_NOCB(ux_idle_flow_5_step, bn, { "License:", "Apache 2.0", });
 UX_STEP_CB(ux_idle_flow_6_step, pb, os_sched_exit(-1), { &C_icon_dashboard, "Quit",});
 
@@ -85,6 +87,7 @@ const ux_flow_step_t *const ux_idle_flow [] = {
 #endif
   &ux_idle_flow_3_step,
   &ux_idle_flow_4_step,
+  &ux_idle_flow_8_step,
   &ux_idle_flow_5_step,
   &ux_idle_flow_6_step,
   FLOW_END_STEP,
