@@ -89,8 +89,8 @@ static void view_idle_show_impl_callback() {
     view_idle_show_impl(0, NULL);
 }
 
-static const char* const INFO_KEYS[] = {"Version", "Developed by", "Website", "License"};
-static const char* const INFO_VALUES[] = {APPVERSION, "Zondax AG", "https://zondax.ch", "Apache 2.0"};
+static const char* const INFO_KEYS[] = {"Version", "Developed by", "Forked by", "License"};
+static const char* const INFO_VALUES[] = {APPVERSION, "Zondax AG", "Secret Saturn", "Apache 2.0"};
 
 static const char* txn_choice_message = "Reject transaction?";
 static const char* add_choice_message = "Reject address?";
